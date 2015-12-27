@@ -32,7 +32,7 @@ class Forum extends MY_Controller
 	{
 		$data = $this->_data;
 		$data['title'] = 'Forum | '.title();
-		$data['topic'] = $this->frm->get_topic($is_at,$thix,$that,$limit = 11);
+		$data['topic'] = $this->frm->get_topic($is_at,$thix,$that);
 		$this->display(array('header','pages/forum/topic','sidebar','footer'),$data);
 	}
 }

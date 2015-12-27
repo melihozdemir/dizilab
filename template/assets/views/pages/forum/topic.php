@@ -30,14 +30,14 @@ Tüm Forumlar
 </a> &gt;
 <a href="http://dizilab.com/mr-robot/forum">
 Mr. Robot </a> &gt;
-<span>F Society açılımı</span>
+<span><?=$topic['name']?></span>
 </div>
 <h3 class="title">
 <a class="new-thread" href="http://dizilab.com/mr-robot/forum/yeni" style="float: right; position: relative; top: -4px;">
 yeni konu aç
 </a>
 <span class="blue big-font">
-F Society açılımı </span>
+<?=$topic['name']?> </span>
 </h3>
 <div style="margin-top: 15px" class="forum-thread-left">
 <div class="forum-messages">
@@ -60,7 +60,7 @@ Okumak istiyorsanız tıklayın.
 </span>
 </p>
 <p style="display: none">
-Sizce F Society'nin açılımı ne? İlk bölümün 49:31 dakikasında Elliot'un elinde ki kağıtta "Fun Society" yazıyor, ama nedense çoğu kişi açılımının "Fuck Society" olduğunu düşünüyor. </p>
+<?=$topic['content']?> </p>
 </div>
 </div>
 <style type="text/css">.message-content a{color:#c1ac87;}.message-content a:hover{text-decoration:underline;}</style>

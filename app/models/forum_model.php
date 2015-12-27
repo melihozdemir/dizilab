@@ -1,11 +1,6 @@
 <?php
 class Forum_model extends CI_Model 
-{/*
-    function get_all($limit)
-    {
-        $query = $this->db->order_by('date','DESC')->get('forum_konular',$limit);
-        return $query->result_array();
-    }*/
+{
 	function get_all($limit)
 	{
 		$query = $this->db
@@ -24,6 +19,18 @@ class Forum_model extends CI_Model
 	function get_forum($thix)
     {
         $query = $this->db->order_by('date','DESC')->get('forum_konular',$limit);
+        return $query->result_array();
+    }
+	function get_topic($dizi,$konu,$id)
+    {
+        $query = $this->db
+		->select('diziler.permalink,diziler.title,forum_konular.*')
+		->from('diziler,forum_konular')
+			->where('diziler.permalink',$dizi)
+			->where('bermalink',$konu)
+			->where('id',$id)
+			->where('forum_konular.showid=diziler.id')
+		->get('forum_konular');
         return $query->result_array();
     }
 }

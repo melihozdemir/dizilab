@@ -23,7 +23,7 @@ class Ajax extends MY_Controller
 						{
 							$result['error'] = 'Kullanıcı adınız veya şifreniz yanlış. Lütfen tekrar deneyin.';
 						}else{
-							$this->user->loginControl($this->input->post('username'),$this->input->post('password'));
+							$this->usr->loginControl($this->input->post('username'),$this->input->post('password'));
 							$result['error'] = false;
 						}
 					}else $result['error'] = 'Tüm alanları doldurup tekrar deneyin.';
@@ -75,7 +75,7 @@ class Ajax extends MY_Controller
 					   $data = array(
                            'user_id'=>$_SESSION['user_id'],
                            'target_id'=>$this->input->post('id'),
-                           'min'=>$this->series_model->dizi_sure($this->input->post('id')),
+                           'min'=>$this->series_model->tsrs($this->input->post('id')),
                            'date'=>date("Y-m-d H:i:s")
 					   );
 					   $izlendi = $this->activity_model->addWatch($data);
@@ -179,7 +179,7 @@ class Ajax extends MY_Controller
                     if($this->user_model->watched($_SESSION['user_id'],$this->input->post('id')) === TRUE){
 						$this->activity_model->delWatch($_SESSION['user_id'],$this->input->post('id'));
 					}elseif($this->user_model->watched($_SESSION['user_id'],$this->input->post('id')) === FALSE){
-						$tt=$this->series_model->dizi_sure($this->input->post('id'));
+						$tt=$this->series_model->tsrs($this->input->post('id'));
 						$data = array(
 							'user_id'=>$_SESSION['user_id'],
 							'target_id'=>$this->input->post('id'),
