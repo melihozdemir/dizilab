@@ -6,7 +6,7 @@ class Forum_model extends CI_Model
 		$query = $this->db
 					  ->select('diziler.permalink,diziler.title,forum_konular.*')
 					  ->from('diziler,forum_konular')
-					  ->where('forum_konular.showid=diziler.id')
+					  ->where('forum_konular.series=diziler.id')
 					  ->order_by('date','DESC')
 					  ->get('');
 
@@ -16,9 +16,15 @@ class Forum_model extends CI_Model
 		}
 		return FALSE;
 	}
-	function get_forum($thix)
+	function get_forum($thix,$limit)
     {
-        $query = $this->db->order_by('date','DESC')->get('forum_konular',$limit);
+        $query = $this->db
+		->select('diziler.permalink,diziler.title,forum_konular.*')
+		->from('diziler,forum_konular')
+		->where('diziler.permalink',$thix)
+		->where('forum_konular.series=diziler.id')
+		->order_by('date','DESC')
+		->get('',$limit);
         return $query->result_array();
     }
 	function get_topic($dizi,$konu,$id)
@@ -27,10 +33,10 @@ class Forum_model extends CI_Model
 		->select('diziler.permalink,diziler.title,forum_konular.*')
 		->from('diziler,forum_konular')
 			->where('diziler.permalink',$dizi)
-			->where('bermalink',$konu)
-			->where('id',$id)
-			->where('forum_konular.showid=diziler.id')
-		->get('forum_konular');
+			->where('forum_konular.link',$konu)
+			->where('forum_konular.id',$id)
+			->where('forum_konular.series=diziler.id')
+		->get('');
         return $query->result_array();
     }
 }

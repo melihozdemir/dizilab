@@ -18,11 +18,11 @@ class Profile extends MY_Controller
 		$data['title'] = 'üye - '.$data['user']['username'].' | '.title();
 		$data['activity'] = $this->www->get_Stream(5,$data['user']['usaid'],$friends=null);
 		$data['last_watched'] = $this->usr->last_activity($data['user']['usaid'],3,1);
-		$data['izledikleri'] = $this->profile_model->izledikleri($data['user']['usaid']);
-		$data['dizi_takip'] = $this->profile_model->dizi_takip($data['user']['usaid']);
-		$data['uye_takip'] = $this->profile_model->uye_takip($data['user']['usaid']);
-		$data['takip_edenler'] = $this->profile_model->takip_edenler($data['user']['usaid']);
-		$data['yorum_say'] = $this->profile_model->yorum_say($data['user']['usaid']);
+		$data['izledikleri'] = $this->profile_model->_1($data['user']['usaid']);
+		$data['dizi_takip'] = $this->profile_model->_2($data['user']['usaid']);
+		$data['uye_takip'] = $this->profile_model->_3($data['user']['usaid']);
+		$data['takip_edenler'] = $this->profile_model->_4($data['user']['usaid']);
+		$data['yorum_say'] = $this->profile_model->_5($data['user']['usaid']);
 		$data['follow_series'] = $this->profile_model->getFollowSeries($data['user']['usaid'],8);
 		$data['follows'] = $this->profile_model->getFollows($data['user']['usaid'],8);
 		$data['followers'] = $this->profile_model->getFollowers($data['user']['usaid'],8);

@@ -57,9 +57,14 @@
                             <abbr id="series_like_<?=$ep['id']?>"><?=$ep['liked']?></abbr>
                         </span>
                         <div class="clear"></div>
-                        <a class="like-btn" href="javascript:void(0)" onclick="series_like(<?=$ep['id']?>)"><span class="fa fa-thumbs-up"></span> BEĞEN</a>
+						<?php if(!isset($i['login'])):?>
+                        <a class="like-btn" href="javascript:;" data-open="#login-form"><span class="fa fa-thumbs-up"></span> BEĞEN</a>
+                        <a class="like-btn dislike" href="javascript:;" data-open="#login-form"><span class="fa fa-thumbs-down"></span></a>
+						<?php else:?>
+						<a class="like-btn" href="javascript:void(0)" onclick="series_like(<?=$ep['id']?>)"><span class="fa fa-thumbs-up"></span> BEĞEN</a>
                         <a class="like-btn dislike" href="javascript:void(0)" onclick="series_dislike(<?=$ep['id']?>)"><span class="fa fa-thumbs-down"></span></a>
-                    </div>
+						<?php endif;?>
+					</div>
                     <div class="clear"></div>
                     <a class="go-tv-series-profile" href="/<?=$ep['permalink']?>"><img data-load-image="<?=thumb($ep['permalink']);?>" src="<?=img_loader()?>" alt=""><span><?=$ep['title']?></span>Dizinin profil sayfasına git.</a> 
                     <div class="last-forum-topics">
@@ -101,25 +106,7 @@
                 <div class="detail-left">
                     <a class="report-btn" href="http://dizilab.com/iletisim?text=Lost%205.%20sezon%207.%20b%C3%B6l%C3%BCm%20hatal%C4%B1%20olarak%20g%C3%B6z%C3%BCk%C3%BCyor.%20L%C3%BCtfen%20d%C3%BCzeltin.&type=5"><span class="fa fa-times"></span> Hata bildir!</a>
                     <div class="translators">Çevirmen: <span><?php if($ep['subtitle'] == ''){echo'*';}else{echo $ep['subtitle'];}?></span></div>
-                    <div style="float: left; position: relative; top: 5px; left: 10px;">
-                        <div id="fb-root" class=" fb_reset">
-                            <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
-                                <div>
-                                    <iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./dizi_izle_files/6Dg4oLkBbYq.html" style="border: none;"></iframe>
-                                    <iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tabindex="-1" src="./dizi_izle_files/6Dg4oLkBbYq(1).html" style="border: none;"></iframe>
-                                </div>
-                            </div>
-                            <div style="position: absolute; top: -10000px; height: 0px; width: 0px;">
-                                <div></div>
-                            </div>
-                        </div>
-                        <script>//(function(d, s, id) {  var js, fjs = d.getElementsByTagName(s)[0];  if (d.getElementById(id)) return;  js = d.createElement(s); js.id = id;  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=635052949871354&version=v2.0";  fjs.parentNode.insertBefore(js, fjs);}(document, 'script', 'facebook-jssdk'));</script>
-                        <div class="fb-like fb_iframe_widget" data-href="http://dizilab.com/lost/sezon-5/bolum-7" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=635052949871354&amp;container_width=0&amp;href=http%3A%2F%2Fdizilab.com%2Flost%2Fsezon-5%2Fbolum-7&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=false">
-                            <span style="vertical-align: bottom; width: 120px; height: 20px;">
-                                <iframe name="f30a922df4" width="1000px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./dizi_izle_files/like(1).html" style="border: none; visibility: visible; width: 120px; height: 20px;" class=""></iframe>
-                            </span>
-                        </div>
-                    </div>
+                    <div style="float: left; position: relative; top: 5px; left: 10px;"></div>
                     <div class="clear"></div>
                     <!-- add comment -->
                     <?php if(!isset($i['login'])):?>

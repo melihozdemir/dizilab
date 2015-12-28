@@ -1,12 +1,12 @@
 <div class="dashboard-head">
-    <h1 class="username" style="padding-top: 17px">FinnGriffColl <span class="fa fa-star"></span></h1><img class="image" data-load-image="http://dizilab.com/upload/avatar/41694_avatar.png?v=1431715183" src="./Sosyal_akis_files/41694_avatar.png" alt="">
+    <h1 class="username" style="padding-top: 17px"><?=$i['username']?> <span class="fa fa-star"></span></h1><img class="image" data-load-image="<?=avatar($i['user_id'])?>" src="<?=img_loader()?>" alt="">
     <div class="alt">
         <ul>
-            <li>TAKİP ETTİĞİN DİZİLER<span>35</span></li>
-            <li>İZLEDİĞİN BÖLÜMLER<span>1,217</span></li>
-            <li>YORUMLARIN<span>34</span></li>
-            <li>TAKİP ETTİKLERİN<span>190</span></li>
-            <li>TAKİP EDENLER<span>35</span></li>
+            <li>TAKİP ETTİĞİN DİZİLER<span><?=number_format($dizi_takip)?></span></li>
+            <li>İZLEDİĞİN BÖLÜMLER<span><?=number_format($izledikleri)?></span></li>
+            <li>YORUMLARIN<span><?=number_format($yorum_say)?></span></li>
+            <li>TAKİP ETTİKLERİN<span><?=number_format($uye_takip)?></span></li>
+            <li>TAKİP EDENLER<span><?=number_format($takip_edenler)?></span></li>
         </ul>
     </div>
 </div>

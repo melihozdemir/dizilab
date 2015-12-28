@@ -20,27 +20,27 @@ class Profile_model extends CI_Model
         return $query->result_array();
     }
 	
-    function izledikleri($user)
+    function _1($user)
     {
         return $this->db->where('user_id',$user)->get('izlediklerim')->num_rows();
     }
 
-    function dizi_takip($user)
+    function _2($user)
     {
         return $this->db->where('user_id',$user)->get('abonelikler')->num_rows();
     }
 
-    function uye_takip($user)
+    function _3($user)
     {
         return $this->db->where('user1',$user)->get('arkadaslar')->num_rows();
     }
 
-    function takip_edenler($user)
+    function _4($user)
     {
         return $this->db->where('user2',$user)->get('arkadaslar')->num_rows();
     }
 	
-	function yorum_say($user)
+	function _5($user)
     {
         return $this->db->where('user_id',$user)->get('yorumlar')->num_rows();
     }

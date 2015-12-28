@@ -18,7 +18,7 @@ class Forum extends MY_Controller
 	{
 		$data = $this->_data;
 		$data['title'] = 'Forum | '.title();
-		$data['forum'] = $this->frm->get_forum($thix,$limit = 11);
+		$data['forum'] = $this->forum_model->get_forum($thix,10);
 		$this->display(array('header','pages/forum/forum','sidebar','footer'),$data);
 	}
 	public function neww($thix)

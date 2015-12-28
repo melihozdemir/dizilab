@@ -13,8 +13,8 @@
 <span class="forum-title"><?=$val['title']?></span>
 </a>
 <li>
-<a href="<?=$val['permalink']?>/forum/<?=$val['bermalink']?>-<?=$val['id']?>">
-<img src="<?=avatar($val['owner'])?>" alt="">
+<a href="<?=$val['permalink']?>/forum/<?=$val['link']?>-<?=$val['id']?>">
+<img src="<?=avatar($val['member'])?>" alt="">
 <span class="topic-content">
 <span class="comment-count">
 1 </span>

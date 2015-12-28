@@ -1,22 +1,22 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : mdxyz
-Source Server Version : 100109
+Source Server         : asdas_copy
+Source Server Version : 50505
 Source Host           : localhost:3306
 Source Database       : test
 
 Target Server Type    : MYSQL
-Target Server Version : 100109
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2015-12-22 19:56:43
+Date: 2015-12-28 12:36:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for abonelikler
+-- Table structure for `abonelikler`
 -- ----------------------------
 DROP TABLE IF EXISTS `abonelikler`;
 CREATE TABLE `abonelikler` (
@@ -32,7 +32,7 @@ CREATE TABLE `abonelikler` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for admin
+-- Table structure for `admin`
 -- ----------------------------
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
@@ -47,7 +47,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for aktiviteler
+-- Table structure for `aktiviteler`
 -- ----------------------------
 DROP TABLE IF EXISTS `aktiviteler`;
 CREATE TABLE `aktiviteler` (
@@ -58,14 +58,17 @@ CREATE TABLE `aktiviteler` (
   `target_type` tinyint(4) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of aktiviteler
 -- ----------------------------
+INSERT INTO `aktiviteler` VALUES ('95', '1', '{\"username\":\"root\"}', '{\"season\":\"1\",\"episode\":\"1\",\"title\":\"Leyla ile Mecnun\",\"perma\":\"leyla-ile-mecnun\"}', '2', '2015-12-26 12:34:55');
+INSERT INTO `aktiviteler` VALUES ('96', '1', '{\"username\":\"root\"}', '{\"season\":\"1\",\"episode\":\"2\",\"title\":\"Leyla ile Mecnun\",\"perma\":\"leyla-ile-mecnun\"}', '2', '2015-12-26 13:33:41');
+INSERT INTO `aktiviteler` VALUES ('97', '1', '{\"username\":\"root\"}', '{\"season\":\"4\",\"episode\":\"20\",\"title\":\"Person of Interest\",\"perma\":\"person-of-interest\"}', '3', '2015-12-27 10:39:12');
 
 -- ----------------------------
--- Table structure for arkadaslar
+-- Table structure for `arkadaslar`
 -- ----------------------------
 DROP TABLE IF EXISTS `arkadaslar`;
 CREATE TABLE `arkadaslar` (
@@ -83,7 +86,7 @@ CREATE TABLE `arkadaslar` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for bildirimler
+-- Table structure for `bildirimler`
 -- ----------------------------
 DROP TABLE IF EXISTS `bildirimler`;
 CREATE TABLE `bildirimler` (
@@ -101,7 +104,7 @@ CREATE TABLE `bildirimler` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for bolumler
+-- Table structure for `bolumler`
 -- ----------------------------
 DROP TABLE IF EXISTS `bolumler`;
 CREATE TABLE `bolumler` (
@@ -126,8 +129,8 @@ CREATE TABLE `bolumler` (
 -- ----------------------------
 -- Records of bolumler
 -- ----------------------------
-INSERT INTO `bolumler` VALUES ('1', '1', '1', '1', 'Pilot', 'sources: [{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=899e8f6eb5b09cd8&itag=18&source=picasa&cmo=secure_transport=yes&ip=0.0.0.0&ipbits=0&expire=1431889969&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=8D1737C9E0ED85F333372316C8E771CB0CEFCC3C.6554FD4441FAC766753B34370990DA7200F602F8&key=lh1\",label: \"360p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=899e8f6eb5b09cd8&itag=22&source=picasa&cmo=secure_transport=yes&ip=0.0.0.0&ipbits=0&expire=1431889969&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=2D020BD7D2209DA26A603E3D4E48056F55DC5BCE.2BD3D61C4506AD99570C025914302EB367F6630A&key=lh1\",label: \"720p\",type: \"mp4\"}]', '', '2015-12-16 22:09:53', '10', '7', '91', '1');
-INSERT INTO `bolumler` VALUES ('2', '1', '1', '2', 'Düğün', 'sources: [{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m18\",label: \"360p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m22\",label: \"720p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m37\",label: \"1080p\",type: \"mp4\"}]', '', '2015-12-16 22:22:40', '17', '5', '75', '0');
+INSERT INTO `bolumler` VALUES ('1', '1', '1', '1', 'Pilot', 'sources: [{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=899e8f6eb5b09cd8&itag=18&source=picasa&cmo=secure_transport=yes&ip=0.0.0.0&ipbits=0&expire=1431889969&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=8D1737C9E0ED85F333372316C8E771CB0CEFCC3C.6554FD4441FAC766753B34370990DA7200F602F8&key=lh1\",label: \"360p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=899e8f6eb5b09cd8&itag=22&source=picasa&cmo=secure_transport=yes&ip=0.0.0.0&ipbits=0&expire=1431889969&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=2D020BD7D2209DA26A603E3D4E48056F55DC5BCE.2BD3D61C4506AD99570C025914302EB367F6630A&key=lh1\",label: \"720p\",type: \"mp4\"}]', '', '2015-12-16 22:09:53', '11', '7', '92', '1');
+INSERT INTO `bolumler` VALUES ('2', '1', '1', '2', 'Düğün', 'sources: [{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m18\",label: \"360p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m22\",label: \"720p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m37\",label: \"1080p\",type: \"mp4\"}]', '', '2015-12-16 22:22:40', '18', '5', '76', '0');
 INSERT INTO `bolumler` VALUES ('3', '1', '1', '3', 'Halı Saha', 'sources: [{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m18\",label: \"360p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m22\",label: \"720p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m37\",label: \"1080p\",type: \"mp4\"}]', '', '2015-12-16 22:58:23', '5', '2', '13', '0');
 INSERT INTO `bolumler` VALUES ('4', '1', '1', '4', 'Fidye', 'sources: [{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m18\",label: \"360p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m22\",label: \"720p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m37\",label: \"1080p\",type: \"mp4\"}]', '', '2015-12-16 23:00:02', '3', '3', '9', '0');
 INSERT INTO `bolumler` VALUES ('5', '1', '1', '5', 'Şöhret', 'sources: [{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m18\",label: \"360p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m22\",label: \"720p\",type: \"mp4\"},{file: \"https://lh3.googleusercontent.com/FaBQQiOEAHoeYv86TJHPR1ThJJMI_y03PfEQV9PYucdF=m37\",label: \"1080p\",type: \"mp4\"}]', '', '2015-12-16 23:00:29', '6', '1', '12', '0');
@@ -181,10 +184,10 @@ INSERT INTO `bolumler` VALUES ('52', '1', '2', '7', '', 'sources: [{file: \"http
 INSERT INTO `bolumler` VALUES ('53', '1', '2', '8', '', 'sources: [{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=23a660b32e4e8443&itag=18&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420534&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=9E7E4A8C25FBBB99788CF9AD084D4D92A0F43E53.A3809FAEF49F3E97B004635C13472B7AB15FE4F4&key=ck2\",label: \"360p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=23a660b32e4e8443&itag=22&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420534&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=9571EB0F1EFB499FE479FFD8F40FE7281BDC9BC3.42F9C42888C46EC1C5D9CA8474647D3AEB98CDE5&key=ck2\",label: \"720p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=23a660b32e4e8443&itag=37&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420534&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=6F47C321653A873EECB6568FC158D3A914A55896.3C3A313A6638243E90B1C5C039E1835CBD31E820&key=ck2\",label: \"1080p\",type: \"mp4\"}]', '', '2015-04-18 13:34:32', '0', '0', '1', '0');
 INSERT INTO `bolumler` VALUES ('54', '1', '2', '9', '', 'sources: [{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=65de000cf3c4ce78&itag=18&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420598&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=9B739DFFADE9B380F50D775F1FD348EACA98056A.5BB0EBC9AFA979D184980807498AAF440037C3C6&key=ck2\",label: \"360p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=65de000cf3c4ce78&itag=22&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420598&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=692297CE98A1B1F9BEECC094FBEB93B032F74B51.46933C83ABD02A52852500A6E842BBCE9BF4716F&key=ck2\",label: \"720p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=65de000cf3c4ce78&itag=37&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420598&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=3C7E42632EF1F5DDD85E472A1F6DAAF01AC9C0D8.47EF6C03399133ECEEB4DD070FAB3EEB1F0C0C08&key=ck2\",label: \"1080p\",type: \"mp4\"}]', '', '2015-04-18 13:34:36', '0', '0', '1', '0');
 INSERT INTO `bolumler` VALUES ('55', '1', '2', '10', '', 'sources: [{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=66b0b3de09842b1a&itag=18&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420673&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=27160906965B2520739E44AC7CBE0FC2ACAD6FA8.2115605554B3A721F28F66915A62F510ED528649&key=ck2\",label: \"360p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=66b0b3de09842b1a&itag=22&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420673&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=B6E73910B782F3AE32BCEBCA11AFA1C9A7B585E8.4AD17F08FECB95BFE2669F7957D0B8C2A93C7597&key=ck2\",label: \"720p\",type: \"mp4\"},{file: \"https://redirector.googlevideo.com/videoplayback?requiressl=yes&shardbypass=yes&cmbypass=yes&id=66b0b3de09842b1a&itag=37&source=webdrive&cmo=secure_transport%3Dyes&ip=0.0.0.0&ipbits=0&expire=1434420673&sparams=requiressl,shardbypass,cmbypass,id,itag,source,ip,ipbits,expire&signature=5F6F71D2EC462B0ACB5AE34501AB8462D3BD6366.13E284F61E3986F4C389BD82295668DA8BC5ED82&key=ck2\",label: \"1080p\",type: \"mp4\"}]', '', '2015-04-18 13:34:40', '0', '0', '2', '0');
-INSERT INTO `bolumler` VALUES ('128', '6', '4', '20', '', 'sources: [{\r\n                file: \"https://lh3.googleusercontent.com/tGHjLpjpPcZCxkQRXUCiu9o8rbl4aQCs7jUzJLTAcfOA=m18\",\r\n                label: \"360p\",\r\n                type: \"mp4\"\r\n            },{\r\n                file: \"https://lh3.googleusercontent.com/tGHjLpjpPcZCxkQRXUCiu9o8rbl4aQCs7jUzJLTAcfOA=m22\",\r\n                label: \"720p\",\r\n                type: \"mp4\"\r\n            },{\r\n                file: \"https://lh3.googleusercontent.com/tGHjLpjpPcZCxkQRXUCiu9o8rbl4aQCs7jUzJLTAcfOA=m37\",\r\n                label: \"1080p\",\r\n                type: \"mp4\"\r\n            }]\r', '', '2015-12-22 19:35:26', '0', '0', '1', '1');
+INSERT INTO `bolumler` VALUES ('128', '6', '4', '20', '', 'sources: [{\r\n                file: \"https://lh3.googleusercontent.com/tGHjLpjpPcZCxkQRXUCiu9o8rbl4aQCs7jUzJLTAcfOA=m18\",\r\n                label: \"360p\",\r\n                type: \"mp4\"\r\n            },{\r\n                file: \"https://lh3.googleusercontent.com/tGHjLpjpPcZCxkQRXUCiu9o8rbl4aQCs7jUzJLTAcfOA=m22\",\r\n                label: \"720p\",\r\n                type: \"mp4\"\r\n            },{\r\n                file: \"https://lh3.googleusercontent.com/tGHjLpjpPcZCxkQRXUCiu9o8rbl4aQCs7jUzJLTAcfOA=m37\",\r\n                label: \"1080p\",\r\n                type: \"mp4\"\r\n            }]\r', '', '2015-12-22 19:35:26', '0', '0', '3', '1');
 
 -- ----------------------------
--- Table structure for diziler
+-- Table structure for `diziler`
 -- ----------------------------
 DROP TABLE IF EXISTS `diziler`;
 CREATE TABLE `diziler` (
@@ -227,25 +230,28 @@ INSERT INTO `diziler` VALUES ('15', 'Lost', 'The survivors of a plane crash are 
 INSERT INTO `diziler` VALUES ('16', 'The Strain', 'A thriller that tells the story of Dr. Ephraim Goodweather, the head of the Center for Disease Control Canary Team in New York City. He and his team are called upon to investigate a ...', 'the-strain', 'tt2654620', '43', 'ABD', '2014', 'Gerilim|Korku|Dram', '2', '7.7');
 
 -- ----------------------------
--- Table structure for forum_konular
+-- Table structure for `forum_konular`
 -- ----------------------------
 DROP TABLE IF EXISTS `forum_konular`;
 CREATE TABLE `forum_konular` (
   `id` int(33) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
-  `showid` int(11) DEFAULT NULL,
-  `bermalink` varchar(255) DEFAULT NULL,
-  `owner` int(33) DEFAULT NULL,
+  `content` varchar(255) DEFAULT NULL,
+  `series` int(11) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `member` int(33) DEFAULT NULL,
   `date` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of forum_konular
 -- ----------------------------
+INSERT INTO `forum_konular` VALUES ('1', 'denemek-gerek', 'qwerqerqewr', '1', 'denemek-gerek', '1', '2015-12-27 12:09:03');
+INSERT INTO `forum_konular` VALUES ('2', 'arkada??m e?ek', 'arkada??m e? arkada??m ?ek arkada??m e??ek', '2', 'arkadasim-esek', '2', '2015-12-27 19:01:05');
 
 -- ----------------------------
--- Table structure for forum_mesajlar
+-- Table structure for `forum_mesajlar`
 -- ----------------------------
 DROP TABLE IF EXISTS `forum_mesajlar`;
 CREATE TABLE `forum_mesajlar` (
@@ -262,7 +268,7 @@ CREATE TABLE `forum_mesajlar` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for haberler
+-- Table structure for `haberler`
 -- ----------------------------
 DROP TABLE IF EXISTS `haberler`;
 CREATE TABLE `haberler` (
@@ -282,7 +288,7 @@ INSERT INTO `haberler` VALUES ('3', 'alternatif video kaynakları.', 'dizileri b
 INSERT INTO `haberler` VALUES ('1', 'dizilab. yayın hayatına başladı!', 'uzun süredir üzerinde uğraştığımız dizilab. yayın hayatına nihayet başladı. birbirinin klonu onlarca dizi sitesi varken bize şans vermenizi ümit ediyoruz.', '5_news', '2015-04-27 22:06:03');
 
 -- ----------------------------
--- Table structure for istekler
+-- Table structure for `istekler`
 -- ----------------------------
 DROP TABLE IF EXISTS `istekler`;
 CREATE TABLE `istekler` (
@@ -300,7 +306,7 @@ CREATE TABLE `istekler` (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for izlediklerim
+-- Table structure for `izlediklerim`
 -- ----------------------------
 DROP TABLE IF EXISTS `izlediklerim`;
 CREATE TABLE `izlediklerim` (
@@ -310,14 +316,15 @@ CREATE TABLE `izlediklerim` (
   `min` int(11) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=214 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=215 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of izlediklerim
 -- ----------------------------
+INSERT INTO `izlediklerim` VALUES ('214', '1', '128', '43', '2015-12-27 10:39:12');
 
 -- ----------------------------
--- Table structure for oyuncular
+-- Table structure for `oyuncular`
 -- ----------------------------
 DROP TABLE IF EXISTS `oyuncular`;
 CREATE TABLE `oyuncular` (
@@ -335,7 +342,7 @@ CREATE TABLE `oyuncular` (
 INSERT INTO `oyuncular` VALUES ('1', 'Ezgi Asaroglu', 'ezgi-asaroglu', 'Izmir, Türkiye', '1987-06-18');
 
 -- ----------------------------
--- Table structure for uyeler
+-- Table structure for `uyeler`
 -- ----------------------------
 DROP TABLE IF EXISTS `uyeler`;
 CREATE TABLE `uyeler` (
@@ -362,12 +369,12 @@ CREATE TABLE `uyeler` (
 -- ----------------------------
 -- Records of uyeler
 -- ----------------------------
-INSERT INTO `uyeler` VALUES ('1', 'root', 'test', '', 'm', '', '', '', '0', 'n', '', '2', '2015-12-20 01:04:45', '2015-05-15 22:32:34', '1', '', '');
+INSERT INTO `uyeler` VALUES ('1', 'root', 'test', '', 'm', '', '', '', '0', 'n', '', '2', '2015-12-26 12:29:42', '2015-05-15 22:32:34', '1', '', '');
 INSERT INTO `uyeler` VALUES ('2', 'atmin', 'test', '', 'm', '', '', '', '0', 'f', '', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1', '', '');
 INSERT INTO `uyeler` VALUES ('8', 'knk', 'test', '', 'f', '', '', '', '0', 'n', '', '0', '2015-06-16 00:14:56', '0000-00-00 00:00:00', '1', '', '');
 
 -- ----------------------------
--- Table structure for yaptiklarim
+-- Table structure for `yaptiklarim`
 -- ----------------------------
 DROP TABLE IF EXISTS `yaptiklarim`;
 CREATE TABLE `yaptiklarim` (
@@ -378,14 +385,16 @@ CREATE TABLE `yaptiklarim` (
   `wall` int(11) NOT NULL,
   `date` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=130 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of yaptiklarim
 -- ----------------------------
+INSERT INTO `yaptiklarim` VALUES ('130', '1', '1', '2', '1', '2015-12-26 12:34:55');
+INSERT INTO `yaptiklarim` VALUES ('131', '1', '2', '2', '1', '2015-12-26 13:33:41');
 
 -- ----------------------------
--- Table structure for yorumlar
+-- Table structure for `yorumlar`
 -- ----------------------------
 DROP TABLE IF EXISTS `yorumlar`;
 CREATE TABLE `yorumlar` (

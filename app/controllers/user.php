@@ -51,6 +51,11 @@ class User extends MY_Controller
         if(empty($data['i']['user_id'])) redirect('/', 'refresh');
         $data['title'] = 'Sosyal akış | '.title();
         $data['activity'] = $this->www->get_Stream($limit=7,$data['i']['user_id'],$friends=null);
+		$data['izledikleri'] = $this->user_model->wtchdby($data['i']['user_id']);
+        $data['dizi_takip'] = $this->user_model->srsf($data['i']['user_id']);
+        $data['uye_takip'] = $this->user_model->mmbrf($data['i']['user_id']);
+        $data['takip_edenler'] = $this->user_model->whof($data['i']['user_id']);
+        $data['yorum_say'] = $this->user_model->commcount($data['i']['user_id']);
         $this->display(array('header','user/stream','sidebar','footer'),$data);
     }
     public function followed_shows()
