@@ -284,8 +284,8 @@ function watched_list($target_id=0,$wathced_list=array()){
 }
 function baslangic(){}
 
-function
+function test()
 {
-	test()
+	return false;
 }
 
