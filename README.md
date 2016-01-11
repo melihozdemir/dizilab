@@ -1,7 +1,8 @@
 # dizilab
 dizilab.com klon script
 
-xampp'ta sorunsuz çalışıyor
+Sistemin sorunsuz çalıştığı programlar
+XAMPP v5.6.15
 
 Düzenle:
 
