@@ -17,9 +17,8 @@ $route['uye/(:any)'] = 'profile/user/$1';
 $route['oyuncu/(:any)'] = 'profile/cast/$1';
 
 $route['404'] = '404';
-
-$route['(:any)'] = 'series/index/$1';
 $route['(:any)/sezon-(:any)/bolum-(:any)'] = "episode/index/$1/$2/$3";
+$route['(:any)'] = 'series/index/$1';
 $route['(:any)/forum'] = 'forum/forum/$1';
 $route['(:any)/forum/yeni'] = 'forum/neww/$1';
 $route['(:any)/forum/(:any)-(:num)'] = 'forum/topic/$1/$2/$3';
