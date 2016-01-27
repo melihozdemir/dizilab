@@ -24,10 +24,11 @@
       </div>
 </div>
 </div>
-<script>var url = "<?=base_url();?>", request_url = url + 'request/php/', VERSION = 5.8;</script>
-<script src="<?=base_url('compress_js?v=5.8');?>"></script>
-<script src="<?=assets_url('plugins/jquery.modal/jquery.modal.min.js?v=5.7');?>"></script>
-<link rel="stylesheet" href="<?=assets_url('plugins/jquery.modal/jquery.modal.css?v=5.7');?>"/>
+<script>var url = "<?=base_url();?>", request_url = url + 'request/php/', VERSION = 6.4;</script>
+	<script src="<?=base_url('compress_js?v=6.4');?>"></script>
+	<script src="<?=assets_url('plugins/jquery.modal/jquery.modal.min.js');?>"></script>
+	<script src="<?=assets_url('plugins/spectrum/spectrum.js');?>"></script>
+	<link rel="stylesheet" href="<?=assets_url('plugins/jquery.modal/jquery.modal.css');?>"/>
 <script>
 
     $(document).ready(function(){
@@ -71,3 +72,36 @@
 </script>
 </body>
 </html>
+<?php if(@$controller == 'series'):?>
+<script>
+    var height = $('.tv-series-story >div').height(),
+        inner_height = $('.tv-series-story >div >div').height();
+
+    if ( inner_height < height ){
+        $('.read-more').remove();
+    }
+    $('.read-more').on('click', function(e){
+        $(this).remove();
+        $('.tv-series-story >div').animate({
+            height: inner_height + 'px'
+        }, 1000);
+        e.preventDefault();
+    });
+
+    var last = $('.tv-series-episodes:last ul li:last');
+    var season = last.find('>span:eq(1)').text();
+    var chapter = last.find('>span:eq(2)').text();
+    var chapter_name = last.find('>span:eq(3)').text();
+    var date = last.find('>span:eq(4)').text();
+    var url = last.find('a').attr('href');
+
+    $('#season').text(season);	$('#chapter').text(chapter);
+    $('#episode-name').text(chapter_name);
+    $('#date').text('(' + date + ')');
+    $('.tv-series-last-episode').attr('href', url);
+	
+    if ( season == '' ){
+        $('.tv-series-last-episode').hide();
+    }
+</script>
+<?php endif;?>

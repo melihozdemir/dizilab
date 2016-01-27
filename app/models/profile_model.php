@@ -1,58 +1,64 @@
 <?php
 class Profile_model extends CI_Model
 {
-	public function getFollows($user = null,$limit = null)
-    {
-        $query = $this->db->select('uyeler.*')->from('arkadaslar,uyeler')->where('user2=uyeler.user_id')->where('user1',$user)->limit($limit)->get(); //SELECT user details where the username is equal to the give variable
-        return $query->result_array();
-    }
-
-
-    public function getFollowers($user = null,$limit = null)
-    {
-        $query = $this->db->select('uyeler.*')->from('arkadaslar,uyeler')->where('user1=uyeler.user_id')->where('user2',$user)->limit($limit)->get(); //SELECT user details where the username is equal to the give variable
-        return $query->result_array();
-    }
-
-    public function getFollowSeries($user = null,$limit = null)
-    {
-        $query = $this->db->select('diziler.*')->from('abonelikler,diziler')->where('show_id=diziler.id')->where('user_id',$user)->limit($limit)->get(); //SELECT user details where the username is equal to the give variable
-        return $query->result_array();
-    }
-	
-    function _1($user)
-    {
-        return $this->db->where('user_id',$user)->get('izlediklerim')->num_rows();
-    }
-
-    function _2($user)
-    {
-        return $this->db->where('user_id',$user)->get('abonelikler')->num_rows();
-    }
-
-    function _3($user)
-    {
-        return $this->db->where('user1',$user)->get('arkadaslar')->num_rows();
-    }
-
-    function _4($user)
-    {
-        return $this->db->where('user2',$user)->get('arkadaslar')->num_rows();
-    }
-	
-	function _5($user)
-    {
-        return $this->db->where('user_id',$user)->get('yorumlar')->num_rows();
-    }
-	
-	function get_cast($name)
+	function get_Member($username)
 	{
-		$query = $this->db
-					  ->select('oyuncular.*')
-					  ->from('oyuncular')
-					  ->where('bermalink',$name)
-					  ->get('');
-
+		$query = $this->db->select('uyeler.*,uyeler.user_id as usaid')->where('username',$username)->get('uyeler');
+		if($query->num_rows() > 0) return $query->result_array();
+		return FALSE;
+	}
+	
+	function _list($user_id,$whichever,$limit)
+    {
+		switch($whichever)
+		{
+			case 'follows':
+			$out = $this->db->select('uyeler.*')->from('arkadaslar,uyeler')->where('user2=uyeler.user_id')->where('user1',$user_id)->limit($limit)->get()->result_array();
+			break;
+			case 'followers':
+			$out = $this->db->select('uyeler.*')->from('arkadaslar,uyeler')->where('user1=uyeler.user_id')->where('user2',$user_id)->limit($limit)->get()->result_array();
+			break;
+			case 'follow_series':
+			$out = $this->db->select('diziler.*')->from('abonelikler,diziler')->where('show_id=diziler.id')->where('user_id',$user_id)->limit($limit)->get()->result_array();
+			break;
+		}
+		return $out;
+    }
+	
+	function _count($user_id,$whichever,$type)
+    {	
+		switch($whichever)
+		{
+			case 'watch':
+			$out = $this->db->where('user_id',$user_id)->get('izlediklerim')->num_rows();
+			break;
+			case 'subscriptions':
+			$out = $this->db->where('user_id',$user_id)->get('abonelikler')->num_rows();
+			break;
+			case 'follow':
+			$out = $this->db->where('user1',$user_id)->get('arkadaslar')->num_rows();
+			break;
+			case 'followers':
+			$out = $this->db->where('user2',$user_id)->get('arkadaslar')->num_rows();
+			break;
+			case 'comments':
+			if($type == 'yazdir')
+			{
+				$out = $this->db->where('user_id',$user_id)->get('yorumlar',4)->result_array();
+			}
+			else
+			{
+				$out = $this->db->where('user_id',$user_id)->get('yorumlar')->num_rows();
+			}
+			break;
+			default: return FALSE;
+		}
+		return $out;
+    }
+	
+	function get_Cast($name)
+	{
+		$query = $this->db->select('oyuncular.*')->from('oyuncular')->where('bermalink',$name)->get('');
 		if($query->num_rows() > 0)
 		{	
 			return $query->result_array();

@@ -9,30 +9,34 @@ class Series extends MY_Controller {
     function index($permalink = NULL)
     {
         $data = $this->_data;
-        if(($data['series'] = $this->srs->get_show($permalink)) === FALSE) redirect('404', 'refresh');
+        if(($data['series'] = $this->srs->get_Series($permalink)) === FALSE) redirect('404', 'refresh');
         $data['title'] = $data['series']['title'].' | '.title();
-        $data['season_count'] = $this->series_model->ssnsthenum($data['series']['dizid']);
-        $data['episode_count'] = $this->series_model->sctnthenum($data['series']['dizid']);
-        $data['latest_episode'] = $this->series_model->final_section($data['series']['dizid']);
-        $data['subscribers'] = $this->series_model->followers($data['series']['dizid']);
-        $data['good_episodes'] = $this->series_model->most_popular_sections($data['series']['dizid']);
-        $data['bad_episodes'] = $this->series_model->worst_sections($data['series']['dizid']);
-        $data['seasons'] = $this->series_model->ssns($data['series']['dizid']);
-        $data['ep_season1'] = $this->series_model->of_the_season($data['series']['dizid'],1);
-        $data['ep_season2'] = $this->series_model->of_the_season($data['series']['dizid'],2);
-        $data['ep_season3'] = $this->series_model->of_the_season($data['series']['dizid'],3);
-        $data['ep_season4'] = $this->series_model->of_the_season($data['series']['dizid'],4);
-        $data['ep_season5'] = $this->series_model->of_the_season($data['series']['dizid'],5);
-        $data['ep_season6'] = $this->series_model->of_the_season($data['series']['dizid'],6);
-        $data['ep_season7'] = $this->series_model->of_the_season($data['series']['dizid'],7);
-        $data['ep_season8'] = $this->series_model->of_the_season($data['series']['dizid'],8);
-        $data['ep_season9'] = $this->series_model->of_the_season($data['series']['dizid'],9);
-        $data['ep_season10'] = $this->series_model->of_the_season($data['series']['dizid'],10);
-        if(isset($_SESSION['login'])) $data['user_watched_list'] = $this->user_model->get_user_watched_list($data['i']['user_id']);
+		$this->session->set_userdata('series_id', $data['series']['dizid']);
+		$data['controller'] = 'series';
+		$data['latest_episode'] = $this->series_model->_list($data['series']['dizid'],'last_episode',1);
+        $data['good_episodes'] = $this->series_model->_list($data['series']['dizid'],'good_episodes',5);
+        $data['bad_episodes'] = $this->series_model->_list($data['series']['dizid'],'bad_episodes',5);
+		$data['season_count'] = $this->series_model->_count($data['series']['dizid'],'seasons',null);
+        $data['episode_count'] = $this->series_model->_count($data['series']['dizid'],'episodes',null);
+        $data['subscribers'] = $this->series_model->_count($data['series']['dizid'],'followers',null);
+		$data['popular_comments'] = false;
+		$data['yorumlar'] = $this->series_model->Comments($data['series']['dizid']);
+        $data['yorum_sayisi'] = $this->series_model->nofcomm($data['series']['dizid']);
+		$data['casts'] = $this->series_model->_List($data['series']['dizid'],'casts',9);
+        #$data['seasons'] = $this->series_model->_count($data['series']['dizid'],'seasons','yazdir');
+        #$data['ep_season1'] = $this->series_model->of_the_season($data['series']['dizid'],1); #,2,3.....
+        #$data['ep_season2'] = $this->series_model->of_the_season($data['series']['dizid'],2); #		gibi
+		$data['seasons'] = $this->series_model->_count($data['series']['dizid'],'seasons','yazdir');
+		$data['episodes'] = $this->srs->get_episodes($data['series']['dizid'],$data['seasons']);
+		$data['forums'] = $this->series_model->get_Forums($data['series']['permalink']);
+        if(isset($_SESSION['login'])){
+			$data['series_follow'] = $this->user_model->_Ctrl($_SESSION['user_id'],$data['series']['dizid'],'series_follow',null);
+			$data['user_watched_list'] = $this->user_model->_list($data['i']['user_id'],'user_watched_list');
+		}
 		if (!$this->agent->is_mobile()) {
-			$this->display(array('header','series','sidebar','footer'),$data);
+			$this->display(array('header','pages/series','sidebar','footer'),$data);
 		}else{
-			$this->display(array('mobile/header','mobile/series','mobile/footer'),$data);
+			$this->display(array('mobile_header','pages/mobile_series','mobile_footer'),$data);
 		}
     }
 }

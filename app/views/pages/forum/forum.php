@@ -1,6 +1,6 @@
 <div class="forum-head">
-<a href="./Forum_dizilab_files/Forum_dizilab.html">
-<img data-load-image="http://dizilab.com/upload/series/mr-robot_thumb.png?v=5.8" src="./Forum_dizilab_files/mr-robot_thumb.png" alt="" class="forum-logo">
+<a href="<?=base_url('forum')?>">
+<img data-load-image="http://dizilab.com/upload/series/ _thumb.png?v=5.8" src="./Forum_dizilab_files/mr-robot_thumb.png" alt="" class="forum-logo">
 </a>
  
 <h1>xxx <span style="color: rgba(255,255,255,.3)">tartışma forumu</span></h1>

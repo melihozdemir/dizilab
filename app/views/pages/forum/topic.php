@@ -1,5 +1,5 @@
 <div class="forum-head">
-<a href="http://dizilab.com/<?=$topic['permalink']?>/forum">
+<a href="<?=base_url($topic['permalink'].'/forum')?>">
 <img data-load-image="http://dizilab.com/upload/series/<?=$topic['permalink']?>_thumb.png?v=5.8" src="" alt="" class="forum-logo">
 </a>
  
@@ -18,22 +18,22 @@
 <div class="right-inner" style="padding: 15px 28px">
  
 <div class="breadcrumb">
-<a href="/forum">tartışma forumları</a> &gt;
+<a href="<?=base_url('forum')?>">tartışma forumları</a> &gt;
 <span><?=$topic['title']?> forum</span>
 </div>
 <div class="notice">
 <div class="icon">
 <span></span>
 </div>
-<a href="http://dizilab.com/forum">
+<a href="<?=base_url('forum')?>">
 Tüm Forumlar
 </a> &gt;
-<a href="http://dizilab.com/mr-robot/forum">
+<a href="<?=base_url($topic['permalink'].'/forum')?>">
 <?=$topic['title']?> </a> &gt;
 <span><?=$topic['name']?></span>
 </div>
 <h3 class="title">
-<a class="new-thread" href="/forum/yeni" style="float: right; position: relative; top: -4px;">
+<a class="new-thread" href="<?=base_url($topic['permalink'].'/forum/yeni')?>" style="float: right; position: relative; top: -4px;">
 yeni konu aç
 </a>
 <span class="blue big-font">
@@ -65,19 +65,19 @@ Okumak istiyorsanız tıklayın.
 </div>
 <style type="text/css">.message-content a{color:#c1ac87;}.message-content a:hover{text-decoration:underline;}</style>
 <div id="comments">
+<? foreach($comments as $val):?>
 <div class="forum-message ">
 <div class="image">
-<img src="./dizilabForumkonusu_files/102801_avatar.png" alt="">
+<img src="<?=avatar($val['usaid'])?>" alt="">
 </div>
 <div class="message-content">
 <div class="top">
-<a href="http://dizilab.com/uye/fraksiyon">fraksiyon</a> <span style="padding-left: 10px; float: right"> 2 gün önce</span>
+<a href="http://dizilab.com/uye/fraksiyon"><?=$val['username']?></a> <span style="padding-left: 10px; float: right"> <?=ago(strtotime($val['tarih']));?></span>
 </div>
 <p class="spoiler-text" style="line-height: 38px; background-color: #1A1D1F; text-align: center; font-size: 12px; color: #dfe4e6; cursor: pointer; display: none">
 Bu yorum dizi hakkında spoiler içermektedir. <span style="color: #edce7b;text-decoration: underline;">Okumak istiyorsanız tıklayın.</span>
 </p>
-<p style="display: block">Bence fast socıety (bizim tabırımızle jet sosyete demek)<br>
-Yüksek kültür düzeyindeki ayrıcalıklı bi elıt tabakadan bahsedıyorlar</p>
+<p style="display: block"><?=$val['content']?></p>
 <div class="alt">
 <div class="alt-right">
 <a href="javascript:;" class="like" onclick="comment_like(362391)">
@@ -88,17 +88,22 @@ Yüksek kültür düzeyindeki ayrıcalıklı bi elıt tabakadan bahsedıyorlar</
 <span class="fa fa-warning" style="font-size: 15px;"></span> <span style="font-size: 12px; position: relative; top: -1px;">Şikayet Et</span>
 </a>
 </div>
-<span class="like-count"><abbr id="like_362391">0</abbr> beğeni</span>
+<span class="like-count"><abbr id="like_362391"><?=$val['liked']?></abbr> beğeni</span>
 </div>
 </div>
 </div>
+<? endforeach ?>
 </div>
 <div class="new-topic-content forum-reply" id="add-comment">
 <div id="addcomment">
 <div class="loader-ajax"></div>
 <div class="formm">
 <div class="user-reply">
-<img src="./dizilabForumkonusu_files/41694_avatar.png" alt="">
+<? if(isset($i['login'])):?>
+<img src="<?=avatar($i['user_id'])?>" alt="">
+<? else:?>
+<img src="<?=avatar(-1)?>" alt="">
+<? endif;?>
 </div>
 <ul class="form">
 <li>
@@ -107,7 +112,7 @@ Yüksek kültür düzeyindeki ayrıcalıklı bi elıt tabakadan bahsedıyorlar</
 <button type="submit" onclick="forum_addcomment()">Gönder</button>
  
 <label class="cb checkbox2">
-<input type="checkbox" name="spoiler" value="1"><span></span>
+<input type="checkbox" name="spoiler" value="1">
 Bu başlık bir şey hakkında <em>spoiler</em> içeriyor mu?
 </label>
 </div>
@@ -118,11 +123,11 @@ Bu başlık bir şey hakkında <em>spoiler</em> içeriyor mu?
 </div>
 </div>
 <div class="forum-alt-link" style="border-top: 1px solid rgba(255,255,255,.05); padding-top: 20px">
-<a href="http://dizilab.com/mr-robot/forum">
+<a href="<?=base_url($topic['permalink'].'/forum')?>">
 <span class="fa fa-mail-reply"></span>
 foruma geri dön
 </a>
-<a href="http://dizilab.com/mr-robot/forum/f-society-acilimi-10088#" id="page-up">
+<a href="#" id="page-up">
 <span class="fa fa-arrow-up"></span>
 en yukarı çık
 </a>
@@ -136,7 +141,7 @@ en yukarı çık
 <ul class="user-list">
 <li>
 <a target="_blank" title="fraksiyon" href="http://dizilab.com/uye/fraksiyon">
-<img data-load-image="http://dizilab.com/upload/avatar/102801_avatar.png?v=1450716827" src="./dizilabForumkonusu_files/102801_avatar.png" alt="">
+<img data-load-image="<?=avatar(-1)?>" src="./dizilabForumkonusu_files/102801_avatar.png" alt="">
 </a>
 </li>
 </ul>

@@ -1,31 +1,11 @@
 <?php
 class User_model extends CI_Model
 {
-	function __construct()
-    {
-        parent::__construct();
-    }
-
     function logmein($username)
     {
     	$query = $this->db->select('*')->where('username',$username)->get('uyeler');
 		return $query->row();
     }
-
-    function get_user($username)
-	{
-		$query = $this->db
-					  ->select('uyeler.*,uyeler.user_id as usaid')
-					  ->from('uyeler')
-					  ->where('username',$username)
-					  ->get('');
-
-		if($query->num_rows() > 0)
-		{	
-			return $query->result_array();
-		}
-		return FALSE;
-	}
 
     public function get_by_username($username){
         $query = $this->db->select('user_id')->where('username',$username)->get('uyeler');
@@ -35,118 +15,121 @@ class User_model extends CI_Model
         return FALSE;
     }
 	
-    public function getWatchTime($user = null)
-    {
-        return $this->db->query('SELECT SUM(min) as toplam FROM watched where user_id='.$user.'');
-    }
-	function thycomm($user,$limit)
-    {
-        return $this->db->where('user_id',$user)->get('yorumlar',$limit)->result_array();
-    }
-	function wtchdby($user)
-    {
-        return $this->db->where('user_id',$user)->get('izlediklerim')->num_rows();
-    }
-
-    function srsf($user)
-    {
-        return $this->db->where('user_id',$user)->get('abonelikler')->num_rows();
-    }
-
-    function mmbrf($user)
-    {
-        return $this->db->where('user1',$user)->get('arkadaslar')->num_rows();
-    }
-
-    function whof($user)
-    {
-        return $this->db->where('user2',$user)->get('arkadaslar')->num_rows();
-    }
-	
-	public function getFollowSeries($user = null,$limit = null)
-    {
-        $query = $this->db->select('diziler.*')->from('abonelikler,diziler')->where('show_id=diziler.id')->where('user_id',$user)->limit($limit)->get(); //SELECT user details where the username is equal to the give variable
-        return $query->result_array();
-    }
-	
-	function commcount($user)
-    {
-        return $this->db->where('user_id',$user)->get('yorumlar')->num_rows();
-    }
-	function last_watched($kisi){
-    	$query = $this->db->select('bolumler.season,bolumler.episode,diziler.title,diziler.permalink,diziler.imdb_rating,diziler.year_started,izlediklerim.date AS tarih')
-    					->from('izlediklerim,bolumler')
-    					->join('diziler','bolumler.show_id = diziler.id')
-    					->where('izlediklerim.user_id',$kisi)
-    					->where('izlediklerim.target_id=bolumler.id')
-						->get();
-		if($query->num_rows() > 0){
-			return $query->result_array();
-		}
-		return FALSE;  
-    }
-    public function get_user_watched_list($user_id){
-        $query = $this->db->select('target_id')
-                     ->from('izlediklerim')
-                     ->where('user_id',$user_id)
-                     ->get('');
-        if($query->num_rows() > 0){
-            return $query->result_array();
-        }
-        return FALSE;
-
-    }
-	
-	public function my_comment($user_id,$comment_id)
-	{
-		$query = $this->db->where('user_id',$user_id)->where('target_id',$comment_id)->get('yorumlar');
-		if($this->db->affected_rows() > 0){
-			return TRUE;
-		}
-		return FALSE;
-	}
-    public function ifollowu($id,$hedef){
-        $this->db->where('user1',$id)->where('user2',$hedef)->get('arkadaslar');
-        if($this->db->affected_rows() > 0){
-            return TRUE;
+	public function get_usernames($xyz){
+        $query = $this->db->select('username')->where('user_id',$xyz)->get('uyeler');
+        if($query->num_rows() == 1){
+            return $query->row_array();
         }
         return FALSE;
     }
 	
-	function watched($where1,$where2){
-        
-        $query = $this->db->where('user_id',$where1)->where('target_id',$where2)
-						->get('izlediklerim');
-		if($query->num_rows() > 0){
-			return TRUE;
-		}
-		return FALSE;  
-    }
-	
-	function donkilot($user,$target,$type){
-        
-        $query = $this->db->where('user_id',$user)
-        				->where('target_id',$target)
-        				->where('type',$type)
-						->get('yaptiklarim');
-		if($query->num_rows() > 0){
-			return TRUE;
-		}
-		return FALSE;  
-    }
-    function done_number($user,$type)
+	function _list($user_id,$whichever,$type = null,$limit = null)
     {
-        return $this->db->where('user_id',$user)->where('type',$type)->get('yaptiklarim')->num_rows();
+		switch($whichever)
+		{
+			case 'watch_time':
+			$out = $this->db->select_sum('min')->where('user_id',$user_id)->get('izlediklerim')->row_array();
+			#$out = $this->db->query('SELECT SUM(min) as toplam FROM izlediklerim where user_id='.$user_id.'');
+			break;
+			case 'follow_series':
+			$out = $this->db->select('diziler.*')->from('abonelikler,diziler')->where('show_id=diziler.id')->where('user_id',$user_id)->limit($limit)->get()->result_array();
+			break;
+			case 'last_watched':
+			$out = $this->db->select('bolumler.season,bolumler.episode,diziler.title,diziler.permalink,diziler.imdb_rating,diziler.year_started,izlediklerim.date AS tarih')
+    					->from('izlediklerim,bolumler')->join('diziler','bolumler.show_id = diziler.id')
+    					->where('izlediklerim.user_id',$user_id)
+						->where('izlediklerim.target_id=bolumler.id')
+						->get()->result_array();
+			break;
+			case 'watch_later':#https://www.youtube.com/watch?v=R8FOr5RJiLY
+			$out = $this->db->select('bolumler.season,bolumler.episode,diziler.title,diziler.permalink,diziler.imdb_rating,diziler.year_started,izleyeceklerim.date,izleyeceklerim.id AS wl_id')
+    					->from('izleyeceklerim,bolumler')->join('diziler','bolumler.show_id = diziler.id')
+    					->where('izleyeceklerim.user_id',$user_id)
+						->where('izleyeceklerim.ep_id=bolumler.id')
+						->get()->result_array();
+			break;
+			case 'user_watched_list':
+			$out = $this->db->select('target_id')->from('izlediklerim')->where('user_id',$user_id)->get('')->result_array();
+			break;
+		}
+		if(!$out) return FALSE;
+        return $out;
     }
 
-	function done_table($where1=NULL,$where2=NULL,$table=NULL){
-        
-        $query = $this->db->where($where1,$where1)->where($where2,$where2)
-						->get($table);
-		if($query->num_rows() > 0){
-			return TRUE;
+	function _count($user_id,$whichever,$type)
+    {
+		switch($whichever)
+		{
+			case 'watch':
+			$out = $this->db->where('user_id',$user_id)->get('izlediklerim')->num_rows();
+			break;
+			case 'subscriptions':
+			$out = $this->db->where('user_id',$user_id)->get('abonelikler')->num_rows();
+			break;
+			case 'follow':
+			$out = $this->db->where('user1',$user_id)->get('arkadaslar')->num_rows();
+			break;
+			case 'followers':
+			$out = $this->db->where('user2',$user_id)->get('arkadaslar')->num_rows();
+			break;
+			case 'comments':
+			if($type == 'yazdir')
+			{
+				$out = $this->db->where('user_id',$user_id)->get('yorumlar',4)->result_array();
+			}
+			else
+			{
+				$out = $this->db->where('user_id',$user_id)->get('yorumlar')->num_rows();
+			}
+			break;
+			case 'unread_notif':
+			$out = $this->db->where('user_id',$user_id)->where('read',0)->get('bildirimler')->num_rows();
+			break;
 		}
-		return FALSE;  
+		if(!$out) return FALSE;
+        return $out;
+    }
+	#https://play.spotify.com/track/2V65y3PX4DkRhy1djlxd9p
+	function _Ctrl($user_id,$target_id,$whichever,$type = null)
+    {
+		switch($whichever)
+		{
+			case 'my_comment':
+			$this->db->where('user_id',$user_id)->where('target_id',$target_id)->get('yorumlar');
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			case 'follow':
+			$this->db->where('user1',$user_id)->where('user2',$target_id)->get('arkadaslar');
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			case 'watched':
+			$this->db->where('user_id',$user_id)->where('target_id',$target_id)->get('izlediklerim');
+			#if($out->num_rows() > 0) return TRUE;
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			case 'watch_later':
+			$this->db->where('user_id',$user_id)->where('ep_id',$target_id)->get('izleyeceklerim');
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			#
+			case 'series_follow':
+			$this->db->where('user_id',$user_id)->where('show_id',$target_id)->get('abonelikler');
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			case 'artist_fan':
+			$this->db->where('user_id',$user_id)->where('cast_id',$target_id)->get('fanlar');
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			case 'seriesVote':
+			$this->db->where('user_id',$user_id)->where('series_id',$target_id)->get('oylar');
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			case 'done':
+			$this->db->where('user_id',$user_id)->where('target_id',$target_id)->where('type',$type)->get('yaptiklarim');
+			if($this->db->affected_rows() > 0) return TRUE;
+			break;
+			default:return FALSE;
+		}
     }
 	
 	function get_Notif($me,$limit)
@@ -163,6 +146,7 @@ class User_model extends CI_Model
         }
         return FALSE;
     }
+	
     public function read($u)
     {
         $this->db->where('user_id',$u)->update('bildirimler',array('read'=>1));
@@ -170,10 +154,6 @@ class User_model extends CI_Model
             return TRUE;
         }
         return FALSE;
-    }
-    public function unread($user)
-    {
-        return $this->db->where('user_id',$user)->where('read',0)->get('bildirimler')->num_rows();
     }
 	
     function update($data){

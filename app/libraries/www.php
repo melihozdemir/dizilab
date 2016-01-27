@@ -1,28 +1,37 @@
 <?php
 
-class Www{
+class WWW
+{
     protected $CI = null;
     protected $config = null;
 
-    function __construct($config = array(  )) {
+    function __construct() 
+	{
         $this->CI = &get_instance();
-        if(is_array($config)) {
-            $this->config = $config;
-        }
-		$this->CI->load->model('stream_model');
-		$this->CI->load->model('profile_model');
+		$this->CI->load->model('general_model');
     }
-	public function get_cast($name)
+	
+	public function get_Member($username)
     {
-        if ($data = $this->CI->profile_model->get_cast($name)) {
+        if ($data = $this->CI->profile_model->get_Member($username)) {
             $det1 = $data[0];
             return $det1;
         }
         return false;
     }
-    function get_Stream($limit,$user_id,$friends)
+	
+	public function get_Cast($name)
     {
-        $stream = $this->CI->stream_model->get_Stream($limit,$user_id,$friends);
+        if ($data = $this->CI->profile_model->get_Cast($name)) {
+            $det1 = $data[0];
+            return $det1;
+        }
+        return false;
+    }
+	
+    public function get_Stream($limit,$user_id,$friends)
+    {
+        $stream = $this->CI->general_model->get_Stream($limit,$user_id,$friends);
         $array1 = array();
         foreach($stream as $val)
         {
@@ -32,8 +41,4 @@ class Www{
         }
         return $array1;
     }
-}
-
-if (!defined( 'BASEPATH' )) {
-    exit( 'No direct script access allowed' );
 }

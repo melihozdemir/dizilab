@@ -7,47 +7,18 @@ function description()
 {
 	return 'Sevdiğiniz tüm yabancı dizileri tek bir platform üzerinden sosyal olarak izlemenize ve takip etmenize olanak sağlar.';
 }
-$dizilab_mod = TRUE; # TRUE: Aktif | FALSE: Deaktif
+$dizilab_mod = FALSE; # TRUE: Aktif | FALSE: Deaktif
 function rand_mesaj()
 {
     $val = array();
-    #-Game of Thrones
-    $val[] = '"bazı insanlar doğru ailede doğacak kadar şanslılar. diğerleri kendi kaderlerini çizmek durumunda." -game of thrones';
-    $val[] = '"kızlar, erkeklerden daha çok kan görür." -game of thrones';
-    $val[] = '"savaş, kız büyütmekten daha kolay." -game of thrones';
-    #-Avatar The Last Airbender
-    $val[] = '"barışı sadece adaletle sağlayabilirsin." - avatar the last airbender';
     #-Person of Interest
     $val[] = '"sevdiğin işi yaparsan hayatın boyunca bir gün bile çalışmış hissetmezsin." -person of interest';
-    #-The Last Man on Earth
-    $val[] = '"dünyayı güzel kılan üzerinde yaşayan insanlardır." -the last man on earth';
-    #-Dexter
-    $val[] = '"kan asla yalan söylemez." -dexter';
-    $val[] = '"tonight is the night!" -dexter';
-    $val[] = '"geçmişiniz, geleceğinizin önsözü müdür?" -dexter';
-    $val[] = '"sorsan ikimizde maviydik ama birimiz deniz, birimiz gökyüzü. anlatabildim mi?" -dexter';
-    $val[] = '"+bu da sevgili eşime. -ekmek yapma makinesi mi? +hep ekmeğimiz bitiyor ya ondan. -sütümüz de bitiyor inek aldın mı?" -dexter';
     #-Leyla ile Mecnun
     $val[] = '"herkes biraz yalnızdır... en zenginin bile fakirliğidir yalnızlık... -leyla ile mecnun';
-    #-Prison Break
-    $val[] = '"dünyada görmek istediğin değişimin parçası ol." -prison break';
-    $val[] = '"para herşeyi yapar diyen adam, para için herşeyi yapan adamdır." -prison break';
-    $val[] = '"dostlarını yakında tut, düşmanlarını daha yakında…" -prison break';
-    $val[] = '"bu duvarların içinde darwin kazanır, einstein değil." -prison break';
     #-The Walking Dead
     $val[] = '"birinin hayatına öylece girip, onlar için değerli bir hale gelip, sonra da çekip gidemezsin öylece." -the walking dead';
-    #-Fringe
-    $val[] = '"sanki birileri deneyler yapıyor ve bütün dünya onların laboratuvarı." -fringe';
-    $val[] = '"ancak IQ’nuz benden daha yüksekse ne düşündüğünüzle ilgilenirim." -fringe';
-    $val[] = '"gerçek sadece bir algı meselesidir." -fringe';
     #-Lost
     $val[] = '"bir lider nereye gittiğini bilmeden, önderlik edemez." -lost';
-    #-Diğer
-    $val[] = '"herkesin hayatına kimse karışamaz." -bir dost';
-    $val[] = '"yokluğunuzu hissetmeyeni varlığınızla rahatsız etmeyin." -bob marley';
-    $val[] = '"eğitim, okulda öğrendiklerinizi unuttuktan sonra aklınızda kalanlardır." -albert einstein';
-    $val[] = '"mutlu mu olmak istiyorsun? kimseden bir şey bekleme." -bob marley';
-    $val[] = '"dünden ders çıkar, bugünü yaşa, yarın için ümitlen." -albert einstein';
     echo $val[rand(0,count($val)-1)];
 }
 function ago($time){
@@ -66,20 +37,20 @@ function assets_url($source) { return base_url('template/assets/'.$source); }
 function bolum_url($var1,$var2,$var3) { return base_url($var1.'/sezon-'.$var2.'/bolum-'.$var3); }
 if(!$dizilab_mod)
 {
-    function thumb($source) { return empty($source)?'http://placehold.it/55x55&text=RESIM YOK':base_url('upload/series/'.$source.'_thumb.png?v=5.5'); }
-    function cover($source) { return empty($source)?'http://placehold.it/230x350&text=RESIM YOK':base_url('upload/series/'.$source.'_cover.png?v=5.5'); }
-	function casta($source) { return empty($source)?'http://placehold.it/230x350&text=RESIM YOK':base_url('upload/actor/'.$source.'.png'); }
+    function thumb($source) { return empty($source)?'http://placehold.it/55x55&text=mdxyz':base_url('upload/series/'.$source.'_thumb.png?v=6.4'); }
+    function cover($source) { return empty($source)?'http://placehold.it/230x350&text=mdxyz':base_url('upload/series/'.$source.'_cover.png?v=6.4'); }
+	function casta($source) { return empty($source)?'http://placehold.it/230x350&text=mdxyz':base_url('upload/actor/'.$source.'.png'); }
 }
 else
 {
-    function thumb($source) { return 'http://dizilab.com/upload/series/'.$source.'_thumb.png?v=5.5'; }
-    function cover($source) { return 'http://dizilab.com/upload/series/'.$source.'_cover.png?v=5.5'; }
+    function thumb($source) { return 'http://dizilab.com/upload/series/'.$source.'_thumb.png?v=6.4'; }
+    function cover($source) { return 'http://dizilab.com/upload/series/'.$source.'_cover.png?v=6.4'; }
 	function casta($source) { return base_url('upload/actor/'.$source.'.png'); }
 }
 function img_loader() { return base_url('template/assets/images/transparent.png'); }
 function avatar($x) 
 {
-    if(file_exists('C:/AppServ/www/upload/avatar/'.$x.'_avatar.png'))
+    if(file_exists('C:/xampp/htdocs/upload/avatar/'.$x.'_avatar.png'))
     {
         $source = base_url('upload/avatar/'.$x.'_avatar.png?v=1431713273');
     }
@@ -112,6 +83,15 @@ function uye_takip($x,$y,$z)
     }else $cevap = null;
     return $cevap;
 }
+
+function dizi_takip($x,$y,$z) 
+{
+    if(!$z){
+        $cevap = '<a class="follow-btn" href="javascript:;" onclick="series_follow('.$y.', this)"><span class="fa fa-plus"></span>Abone Ol</a>';
+    }else $cevap = '<a class="follow-btn" href="javascript:;" onclick="series_unfollow('.$y.', this)"><span class="fa fa-plus"></span>Aboneliği İptal Et</a>';
+    return $cevap;
+}
+
 function last_watched($source)
 {
     foreach ($source as $val) 
@@ -272,20 +252,95 @@ function watched_list($target_id=0,$wathced_list=array()){
         }
     }
     if(in_array($target_id,$list)){
-        return '<span style="cursor: pointer" onclick="add_to_my_watch('.$target_id.', this)" class="radius active"> <!-- active-->
-                                                <span class="fa fa-check"></span>
-                                            </span>';
+        return ' active';
     }
     else{
-        return '<span style="cursor: pointer" onclick="add_to_my_watch('.$target_id.', this)" class="radius"> <!-- active-->
-                                                <span class="fa fa-check"></span>
-                                            </span>';
+        return null;
     }
 }
-function baslangic(){}
+	function generateRandomString($length = 10)
+	{
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++)
+		{
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+		
+		return $randomString;
+	}
+	
+	function BBCode($deger)
+	{
+		$bul = array(
+			'/\[b\](.*?)\[\/b\]/is',
+			'/\[i\](.*?)\[\/i\]/is',
+			'/\[center\](.*?)\[\/center\]/is',
+			'/\[color\=(.*?)\](.*?)\[\/color\]/is',
+			'/\[img\](.*?)\[\/img\]/is',
+		);
+		
+		$degistir = array(
+			'<strong>$1</strong>',
+			'<em>$1</em>',
+			'<div style="text-align: center;">$1</div>',
+			'<span style="color: $1;">$2</span>',
+			'<img src="$1" class="resized" />'
+		);
+		
+		return preg_replace($bul, $degistir, $deger);
+	}
+	
+	function DateDifference($date)
+	{
+		$time_difference = time() - $date;
+		$second          = round( $time_difference );
+		$minute          = round( $time_difference/60 );
+		$hour            = round( $time_difference/3600 );
+		$day             = round( $time_difference/86400 );
+		$week            = round( $time_difference/604800 );
+		$month           = round( $time_difference/2419200 );
+		$year            = round( $time_difference/29030400 );
 
-function test()
+		if( $second <= 59 ){
+			if( $second == 0 ){
+				return 'Şimdi';
+			}else{
+				return $second . ' saniye önce';
+			}
+		}else if( $minute <= 59 ){
+			return $minute . ' dakika önce';
+		}else if( $hour <= 23 ){
+			return $hour . ' saat önce';
+		}else if( $day <= 6 ){
+			return $day . ' gün önce';
+		}else if( $week <= 3 ){
+			return $week . ' hafta önce';
+		}else if( $month <= 11 ){
+			return $month . ' ay önce';
+		}else{
+			return $year . ' yıl önce';
+		}
+	}
+	
+function whtime($minutes)
 {
-	return false;
+	$month = floor($minutes / (3600*24*30));
+	$day = floor ($minutes / 1440);
+	$hour = floor (($minutes - $day * 1440) / 60);
+	$min = $minutes - ($day * 1440) - ($hour * 60);
+	if(!$min){
+		return $out = $min.' dakika';
+	}else if($hour){
+		return $out = $hour.' saat, '.$min.' dakika';
+	}else if($day){
+		return $out = $day.' gün, '.$hour.' saat, '.$min.' dakika';
+	}else if($month){
+		return $out = $month.' ay, '.$day.' gün, '.$hour.' saat, '.$min.' dakika';
+	}else $out = 'Henüz yok.';
+	return $out;
 }
+
+
 

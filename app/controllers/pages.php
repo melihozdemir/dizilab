@@ -11,7 +11,7 @@ class Pages extends MY_Controller
 	{
 		$data = $this->_data;
 		$data['title'] = 'Arşiv | '.title();
-		$data['top_shows'] = $this->general_model->get_top_shows();
+		$data['top_shows'] = $this->general_model->get_Top_series();
 		$this->display(array('header','pages/archive','sidebar','footer'),$data);
 	}
 	public function calendar()

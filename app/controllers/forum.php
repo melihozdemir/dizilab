@@ -18,7 +18,7 @@ class Forum extends MY_Controller
 	{
 		$data = $this->_data;
 		$data['title'] = 'Forum | '.title();
-		$data['forum'] = $this->forum_model->get_forum($thix,10);
+		$data['forum'] = $this->forum_model->get_Forum($thix,10);
 		$this->display(array('header','pages/forum/forum','sidebar','footer'),$data);
 	}
 	public function neww($thix)
@@ -32,7 +32,8 @@ class Forum extends MY_Controller
 	{
 		$data = $this->_data;
 		$data['title'] = 'Forum | '.title();
-		$data['topic'] = $this->frm->get_topic($is_at,$thix,$that);
+		$data['topic'] = $this->frm->get_Topic($is_at,$thix,$that);
+		$data['comments'] = $this->forum_model->get_Comments($thix,9);
 		$this->display(array('header','pages/forum/topic','sidebar','footer'),$data);
 	}
 }

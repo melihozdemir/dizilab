@@ -4,9 +4,9 @@ class Forum_model extends CI_Model
 	function get_all($limit)
 	{
 		$query = $this->db
-					  ->select('diziler.permalink,diziler.title,forum_konular.*')
-					  ->from('diziler,forum_konular')
-					  ->where('forum_konular.series=diziler.id')
+					  ->select('diziler.permalink,diziler.title,forumlar.*')
+					  ->from('diziler,forumlar')
+					  ->where('forumlar.series=diziler.id')
 					  ->order_by('date','DESC')
 					  ->get('');
 
@@ -19,10 +19,10 @@ class Forum_model extends CI_Model
 	function get_forum($thix,$limit)
     {
         $query = $this->db
-		->select('diziler.permalink,diziler.title,forum_konular.*')
-		->from('diziler,forum_konular')
+		->select('diziler.permalink,diziler.title,forumlar.*')
+		->from('diziler,forumlar')
 		->where('diziler.permalink',$thix)
-		->where('forum_konular.series=diziler.id')
+		->where('forumlar.series=diziler.id')
 		->order_by('date','DESC')
 		->get('',$limit);
         return $query->result_array();
@@ -30,13 +30,26 @@ class Forum_model extends CI_Model
 	function get_topic($dizi,$konu,$id)
     {
         $query = $this->db
-		->select('diziler.permalink,diziler.title,forum_konular.*')
-		->from('diziler,forum_konular')
+		->select('diziler.permalink,diziler.title,forumlar.*')
+		->from('diziler,forumlar')
 			->where('diziler.permalink',$dizi)
-			->where('forum_konular.link',$konu)
-			->where('forum_konular.id',$id)
-			->where('forum_konular.series=diziler.id')
+			->where('forumlar.link',$konu)
+			->where('forumlar.id',$id)
+			->where('forumlar.series=diziler.id')
 		->get('');
         return $query->result_array();
+    }
+	function get_comments($thix,$limit)
+    {
+        $query = $this->db
+		->select('y.*,u.username,u.user_id AS usaid')
+		->from('yorumlar y')
+		->where('f.link',$thix)
+		#->where('y.type',99)
+		->join('forumlar f','f.id=y.target_id','left')
+		->join('uyeler u','u.user_id = y.user_id','LEFT')
+		->order_by('tarih','DESC')
+		->get('',$limit);
+			return $query->result_array();
     }
 }

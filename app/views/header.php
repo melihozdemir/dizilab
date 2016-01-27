@@ -30,6 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             top.location.replace(location.href);
         }
     </script>
+	
     <script>
         $(document).ready(function(e) {
             function setCookie(cname, cvalue, exdays) {
@@ -193,8 +194,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         bgChange();
     </script>
     <? endif;?>
+	<!--
     <div id="ad-close" style="display: none;">Reklamı Kapat [x]</div>
-    <a class="banner" href="#" target="_blank" style="display: none; background-image: url(ads/youwin-mini.jpg);"></a>
+    <a class="banner" href="#" target="_blank" style="display: none; background-image: url(ads/img.jpg);"></a>
+	-->
     <style>
         .banner {
             text-indent: -9999px;
@@ -291,22 +294,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <h3>Arkaplan Değiştir</h3>
                                 <ul>
                                     <li>
-                                        <a href="#" data-bg="http://dizilab.com/template/assets/images/body-bg.png?v=5.7" class="default"><img data-load-image="http://dizilab.com/template/assets/images/backgrounds/default.png?v=5.7" src="http://dizilab.com/template/assets/images/backgrounds/default.png" alt="">Standart</a>
+                                        <a href="#" data-bg="<?=assets_url('images/body-bg.png');?>" class="default"><img data-load-image="<?=assets_url('images/backgrounds/default.png');?>" src="<?=img_loader();?>" alt="">Standart</a>
                                     </li>
                                     <li>
-                                        <a href="#" data-bg="http://dizilab.com/template/assets/images/backgrounds/breakingbad.png?v=5.7"><img data-load-image="http://dizilab.com/template/assets/images/backgrounds/breakingbad_mini.png?v=5.7" src="http://dizilab.com/template/assets/images/backgrounds/breakingbad_mini.png" alt="">Breaking Bad</a>
+                                        <a href="#" data-bg="<?=assets_url('images/backgrounds/breakingbad.png');?>"><img data-load-image="<?=assets_url('images/backgrounds/breakingbad_mini.png');?>" src="<?=img_loader();?>" alt="">Breaking Bad</a>
                                     </li>
                                     <li>
-                                        <a href="#" data-bg="http://dizilab.com/template/assets/images/backgrounds/doctorwho.png?v=5.7"><img data-load-image="http://dizilab.com/template/assets/images/backgrounds/doctorwho_mini.png?v=5.7" src="http://dizilab.com/template/assets/images/backgrounds/doctorwho_mini.png" alt="">Doctor Who</a>
+                                        <a href="#" data-bg="<?=assets_url('images/backgrounds/doctorwho.png');?>"><img data-load-image="<?=assets_url('images/backgrounds/doctorwho_mini.png');?>" src="<?=img_loader();?>" alt="">Doctor Who</a>
                                     </li>
                                     <li>
-                                        <a href="#" data-bg="http://dizilab.com/template/assets/images/backgrounds/fringe.png?v=5.7"><img data-load-image="http://dizilab.com/template/assets/images/backgrounds/fringe_mini.png?v=5.7" src="http://dizilab.com/template/assets/images/backgrounds/fringe_mini.png" alt="">Fringe</a>
+                                        <a href="#" data-bg="<?=assets_url('images/backgrounds/fringe.png');?>"><img data-load-image="<?=assets_url('images/backgrounds/fringe_mini.png');?>" src="<?=img_loader();?>" alt="">Fringe</a>
                                     </li>
                                     <li>
-                                        <a href="#" data-bg="http://dizilab.com/template/assets/images/backgrounds/prisonbreak.png?v=5.7"><img data-load-image="http://dizilab.com/template/assets/images/backgrounds/prisonbreak_mini.png?v=5.7" src="http://dizilab.com/template/assets/images/backgrounds/prisonbreak_mini.png" alt="">Prison Break</a>
+                                        <a href="#" data-bg="<?=assets_url('images/backgrounds/prisonbreak.png');?>"><img data-load-image="<?=assets_url('images/backgrounds/prisonbreak_mini.png');?>" src="<?=img_loader();?>" alt="">Prison Break</a>
                                     </li>
                                     <li>
-                                        <a href="#" data-bg="http://dizilab.com/template/assets/images/backgrounds/southpark.png?v=5.7"><img data-load-image="http://dizilab.com/template/assets/images/backgrounds/southpark_mini.png?v=5.7" src="http://dizilab.com/template/assets/images/backgrounds/southpark_mini.png" alt="">South park</a>
+                                        <a href="#" data-bg="<?=assets_url('images/backgrounds/southpark.png');?>"><img data-load-image="<?=assets_url('images/backgrounds/southpark_mini.png');?>" src="<?=img_loader();?>" alt="">South park</a>
                                     </li>
                                 </ul>
                             </div>

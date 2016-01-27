@@ -11,7 +11,7 @@ class Usr{
         $this->CI->load->model('activity_model');
     }
     
-    public function get_user($username)
+    public function get_User($username)
     {
         if ($data = $this->CI->user_model->get_user($username)) {
             $det1 = $data[0];
@@ -23,21 +23,45 @@ class Usr{
     function loginControl($username, $password)
     {
         $user = $this->CI->user_model->logmein($username);
-        $this->CI->session->set_userdata(array('login'=> 1,'user_id'=>$user->user_id,'username'=>$user->username,'birthday'=>$user->birthday,'user_info'=>$user->info,'user_mail'=>$user->email,'user_twttr'=>$user->twitter,'user_fb'=>$user->facebook));
+        $this->CI->session->set_userdata(
+			array(
+			'login'=> 1,
+			'user_id'=>$user->user_id,
+			'username'=>$user->username,
+			'birthday'=>$user->birthday,
+			'user_info'=>$user->info,
+			'user_mail'=>$user->email,
+			'user_twttr'=>$user->twitter,
+			'user_fb'=>$user->facebook,
+			'user_perm'=>$user->permission
+			)
+		);
         $cookie = array( 'name' => 'cached', 'value' => 0, 'expire' => time(  ) + 60 * 60 * 24 * 30 );
         $this->CI->input->set_cookie($cookie);
     }
 
     function logout() {
         $cookie = array( 'name' => 'cached', 'value' => 1, 'expire' => time(  ) + 60 * 60 * 24 * 30 );
-        $this->CI->input->set_cookie( $cookie );
-        $this->CI->session->unset_userdata( array( 'login' => '', 'user_id' => '', 'username' => '', 'gender' => '', 'photo' => '' ) );
+        $this->CI->input->set_cookie($cookie);
+        $this->CI->session->unset_userdata(
+			array(
+			'login' => '',
+			'user_id' => '',
+			'username' => '',
+			'birthday' => '',
+			'user_info' => '',
+			'user_mail' => '',
+			'user_twttr' => '',
+			'user_fb' => '',
+			'user_perm' => ''
+			)
+		);
         $this->CI->session->sess_destroy(  );
     }
 
-    function get_Notif($me,$limit)
+    function get_Notif($user_id,$limit)
     {
-        $strex = $this->CI->user_model->get_Notif($me,$limit);
+        $strex = $this->CI->user_model->get_Notif($user_id,$limit);
         $resw = array();
             foreach($strex as $s)
             {
@@ -61,9 +85,4 @@ class Usr{
         //    $res[$s['id']] = $s;
         return $rest;
     }
-}
-
-
-if (!defined( 'BASEPATH' )) {
-    exit( 'No direct script access allowed' );
 }
