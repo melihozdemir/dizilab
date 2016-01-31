@@ -55,7 +55,7 @@ class Ajax extends MY_Controller
 					if(!$this->input->post('name') || !$this->input->post('email') || $this->input->post('types') == 0 || !$this->input->post('text')) $result['error'] = 'xx';
 					if($this->input->post('name') && $this->input->post('email') && !$this->input->post('types') == 0 && $this->input->post('text')) $this->general_model->contact($data);
 					if($data) {
-						$result['success'] = 'Gönderildi.';
+						$result['success'] = 'Teşekkürler, mesajın bize ulaştı. En kısa zamanda dönüş yapacağız.';
 					}else{
 						$result['error'] = 'xx';
 					}
@@ -410,7 +410,7 @@ class Ajax extends MY_Controller
     				);
 					if($this->input->post('types') == 0 || !$this->input->post('text')) $result['error'] = 'err';
 					if(!$this->input->post('types') == 0 && $this->input->post('text')) $this->general_model->contact($data);
-					if($data) $result['success'] = 'succ';
+					if($data) $result['success'] = 'Teşekkürler, mesajın bize ulaştı. En kısa zamanda dönüş yapacağız.';
 					break;
 					case "season_watch":
 					if($this->input->post('season') && $this->input->post('series_url')){
