@@ -19,7 +19,7 @@
                         <li><a href="" target="_blank">bağış yap</a></li>
                         <li><a href="">reklam/iletişim</a></li>
                   </ul>
-                  <p>© 2014-2015 <a href="#">dizilab</a>. tüm hakları mahfuzdur ve mahfuz acı verir. <?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?></p>
+                  <p>© 2014-2016 <a href="#">dizilab</a>. tüm hakları mahfuzdur ve mahfuz acı verir. <!--<?php echo  (ENVIRONMENT === 'development') ?  'CodeIgniter Version <strong>' . CI_VERSION . '</strong>' : '' ?>--></p>
             </div>
       </div>
 </div>
