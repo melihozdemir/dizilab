@@ -5,6 +5,7 @@ class MY_Controller extends CI_Controller{
         parent::__construct();
         $this->_data['i'] = $this->session->all_userdata();
         $this->load->library('usr',$this->_data['i']);
+		$this->load->helper('my');
         if($this->session->userdata('login')){
             $this->_data['notif'] = $this->usr->get_Notif($this->_data['i']['user_id'],15);
             #$this->user_model->lau($this->_data['i']['user_id']);
