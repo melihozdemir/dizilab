@@ -29,7 +29,7 @@ class Series extends MY_Controller {
 		$data['seasons'] = $this->series_model->_count($data['series']['dizid'],'seasons','yazdir');
 		$data['episodes'] = $this->srs->get_episodes($data['series']['dizid'],$data['seasons']);
 		$data['forums'] = $this->series_model->get_Forums($data['series']['permalink']);
-        if(isset($_SESSION['login'])){
+        if(isset($_SESSION['login']) == TRUE){
 			$data['series_follow'] = $this->user_model->_Ctrl($_SESSION['user_id'],$data['series']['dizid'],'series_follow',null);
 			$data['user_watched_list'] = $this->user_model->_list($data['i']['user_id'],'user_watched_list');
 		}

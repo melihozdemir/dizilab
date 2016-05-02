@@ -23,11 +23,13 @@ class Series_model extends CI_Model
 		{
 			case 'popular_series':
 			$out = $this->db->select('diziler.title,diziler.permalink,diziler.imdb_rating,diziler.tags')
-				 ->from('diziler')->get()->result_array();
+				 ->from('diziler')->where('diziler.type>',0)->where('diziler.imdb_rating >=','8.0')
+				 ->order_by('diziler.imdb_rating','DESC')->limit($limit)->get()->result_array();
 			break;
 			case 'featured_series':
 			$out = $this->db->select('diziler.*,diziler.title,diziler.permalink')
-				 ->from('diziler')->get()->result_array();
+				 ->from('diziler')->where('diziler.type>',0)->where('diziler.imdb_rating >=','7.5')
+				 ->order_by('rand()')->limit($limit)->get()->result_array();
 			break;
 			case 'good_episodes':
 			$out = $this->db->select('diziler.permalink, diziler.title as showtitle, bolumler.episode, bolumler.season')->from('bolumler,diziler')->where('bolumler.show_id=diziler.id')->where('bolumler.show_id',$id)->order_by('bolumler.liked','DESC')->get('', $limit)->result_array();
